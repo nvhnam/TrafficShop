@@ -51,7 +51,6 @@ const Product = ({ isChecked, isToggle }) => {
   const [saltSuggest, setSaltSuggest] = useState("");
   const [productSuggestion, setProductsSuggestion] = useState([]);
   const [showProductsSuggestion, setShowProductsSuggestion] = useState(true);
-  const [errorMessage, setErrorMessage] = useState("");
   const [caloriesCurrent, setCaloriesCurrent] = useState("");
   const [caloriesMaxSuggestion, setCaloriesMaxSuggestion] = useState("");
 
@@ -1294,3 +1293,5 @@ const Product = ({ isChecked, isToggle }) => {
 };
 
 export default Product;
+
+roduct;

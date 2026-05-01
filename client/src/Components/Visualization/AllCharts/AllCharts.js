@@ -108,7 +108,7 @@ export const AllCharts = () => {
       );
 
       for (const type of selectedTypes) {
-        const response = await axios.post(
+        await axios.post(
           `${URL || `http://localhost:${PORT}`}/record/rating`,
           {
             token,
