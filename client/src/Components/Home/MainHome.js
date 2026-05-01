@@ -1,6 +1,5 @@
 import React from "react";
 import "./MainHome.css";
-import foodparamid from "../../asset/pyramid.png";
 import trafficLight from "../../asset/trafficLight.png";
 import { Link } from "react-router-dom";
 
