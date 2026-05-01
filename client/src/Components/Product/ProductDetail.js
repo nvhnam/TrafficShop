@@ -15,6 +15,7 @@ const ProductDetail = ({ isChecked }) => {
   const [product, setProduct] = useState(null);
   const { productId } = useParams();
   const [errorMessage, setErrorMessage] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(false);
   const [caloriesCurrent, setCaloriesCurrent] = useState("");
   const [caloriesMaxSuggestion, setCaloriesMaxSuggestion] = useState("");

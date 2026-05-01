@@ -53,6 +53,7 @@ const Product = ({ isChecked, isToggle }) => {
   const [showProductsSuggestion, setShowProductsSuggestion] = useState(true);
   const [caloriesCurrent, setCaloriesCurrent] = useState("");
   const [caloriesMaxSuggestion, setCaloriesMaxSuggestion] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   // open AI ChatBox
   const [isOpenAIChatBox, setIsOpenAIChatBox] = useState(false);
