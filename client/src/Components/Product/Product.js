@@ -1295,4 +1295,3 @@ const Product = ({ isChecked, isToggle }) => {
 
 export default Product;
 
-roduct;
