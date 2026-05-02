@@ -11,6 +11,9 @@ import {
   Button,
 } from "@mui/material";
 
+const PORT = process.env.REACT_APP_PORT;
+const URL = process.env.REACT_APP_URL || `http://localhost:${PORT}`;
+
 const UserTable = () => {
   const [users, setUsers] = useState([]);
 
@@ -20,7 +23,7 @@ const UserTable = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:8008/mng-user/users");
+      const response = await axios.get(`${URL}/mng-user/users`);
       setUsers(response.data);
       console.log(response.data);
       // flat () nhập mảng lại
@@ -31,7 +34,7 @@ const UserTable = () => {
 
   const deleteUser = async (user_id) => {
     try {
-      await axios.delete(`http://localhost:8008/mng-user/users/${user_id}`);
+      await axios.delete(`${URL}/mng-user/users/${user_id}`);
       fetchUsers(); // Refresh the list after deletion
     } catch (error) {
       console.error("Error deleting user:", error);

@@ -13,6 +13,9 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+const PORT = process.env.REACT_APP_PORT;
+const URL = process.env.REACT_APP_URL || `http://localhost:${PORT}`;
+
 function AuthAdm() {
   const [values, setValues] = useState({
     username: "",
@@ -25,7 +28,7 @@ function AuthAdm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:8008/auth/admin/login", JSON.stringify(values), {
+      .post(`${URL}/auth/admin/login`, JSON.stringify(values), {
         headers: {
           "Content-Type": "application/json",
         },

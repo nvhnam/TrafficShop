@@ -26,6 +26,9 @@ const columns = [
   { id: "actions", label: "Actions", minWidth: 100 },
 ];
 
+const PORT = process.env.REACT_APP_PORT;
+const URL = process.env.REACT_APP_URL || `http://localhost:${PORT}`;
+
 export default function ProductTable() {
   const [rows, setRows] = useState([]);
   const [page, setPage] = useState(0);
@@ -49,7 +52,7 @@ export default function ProductTable() {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch("http://localhost:8008/mng-product/product");
+      const response = await fetch(`${URL}/mng-product/product`);
       if (response.ok) {
         const data = await response.json();
         setRows(data);
@@ -75,8 +78,8 @@ export default function ProductTable() {
   const handleSave = async () => {
     const url =
       dialogType === "Add"
-        ? "http://localhost:8008/mng-product/product"
-        : `http://localhost:8008/mng-product/product/${currentRow.product_id}`;
+        ? `${URL}/mng-product/product`
+        : `${URL}/mng-product/product/${currentRow.product_id}`;
     const method = dialogType === "Add" ? "POST" : "PUT";
     try {
       const response = await fetch(url, {
@@ -109,7 +112,7 @@ export default function ProductTable() {
   const handleDelete = async (product_id) => {
     try {
       const response = await fetch(
-        `http://localhost:8008/mng-product/product/${product_id}`,
+        `${URL}/mng-product/product/${product_id}`,
         {
           method: "DELETE",
         }
