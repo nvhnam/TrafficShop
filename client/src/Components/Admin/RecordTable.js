@@ -11,6 +11,9 @@ import {
   Button,
 } from "@mui/material";
 
+const PORT = process.env.REACT_APP_PORT;
+const URL = process.env.REACT_APP_URL || `http://localhost:${PORT}`;
+
 const RecordTable = () => {
   const [records, setRecords] = useState([]);
 
@@ -21,7 +24,7 @@ const RecordTable = () => {
   const fetchRecords = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8008/mng-record/records"
+        `${URL}/mng-record/records`
       );
       setRecords(response.data);
     } catch (error) {
@@ -31,9 +34,7 @@ const RecordTable = () => {
 
   const deleteRecord = async (record_id) => {
     try {
-      await axios.delete(
-        `http://localhost:8008/mng-record/records/${record_id}`
-      );
+      await axios.delete(`${URL}/mng-record/records/${record_id}`);
       alert("Successful!");
       fetchRecords(); // Refresh the list after deletion
     } catch (error) {

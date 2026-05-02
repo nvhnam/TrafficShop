@@ -27,6 +27,9 @@ const columns = [
   { id: "actions", label: "Actions", minWidth: 100 },
 ];
 
+const PORT = process.env.REACT_APP_PORT;
+const URL = process.env.REACT_APP_URL || `http://localhost:${PORT}`;
+
 export default function NutrientsTable() {
   const [rows, setRows] = useState([]);
   const [page, setPage] = useState(0);
@@ -49,7 +52,7 @@ export default function NutrientsTable() {
     async function fetchNutrients() {
       try {
         const response = await fetch(
-          "http://localhost:8008/mng-nutrients/nutrients"
+          `${URL}/mng-nutrients/nutrients`
         );
         const data = await response.json();
         setRows(data);
@@ -76,8 +79,8 @@ export default function NutrientsTable() {
   const handleSave = async () => {
     const url =
       dialogType === "Add"
-        ? "http://localhost:8008/mng-nutrients/nutrients"
-        : `http://localhost:8008/mng-nutrients/nutrients/${currentRow.product_id}`;
+        ? `${URL}/mng-nutrients/nutrients`
+        : `${URL}/mng-nutrients/nutrients/${currentRow.product_id}`;
     const method = dialogType === "Add" ? "POST" : "PUT";
     try {
       const response = await fetch(url, {
@@ -110,7 +113,7 @@ export default function NutrientsTable() {
   const handleDelete = async (product_id) => {
     try {
       const response = await fetch(
-        `http://localhost:8008/mng-nutrients/nutrients/${product_id}`,
+        `${URL}/mng-nutrients/nutrients/${product_id}`,
         {
           method: "DELETE",
         }

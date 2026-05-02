@@ -22,6 +22,9 @@ const columns = [
   { id: "actions", label: "Actions", minWidth: 100 },
 ];
 
+const PORT = process.env.REACT_APP_PORT;
+const URL = process.env.REACT_APP_URL || `http://localhost:${PORT}`;
+
 export default function CategoryTable() {
   const [rows, setRows] = useState([]);
   const [page, setPage] = useState(0);
@@ -39,7 +42,7 @@ export default function CategoryTable() {
     async function fetchCategories() {
       try {
         const response = await fetch(
-          "http://localhost:8008/mng-category/category"
+          `${URL}/mng-category/category`
         );
         const data = await response.json();
         setRows(data);
@@ -66,8 +69,8 @@ export default function CategoryTable() {
   const handleSave = async () => {
     const url =
       dialogType === "Add"
-        ? "http://localhost:8008/mng-category/category"
-        : `http://localhost:8008/mng-category/category/${currentRow.product_id}`;
+        ? `${URL}/mng-category/category`
+        : `${URL}/mng-category/category/${currentRow.product_id}`;
     const method = dialogType === "Add" ? "POST" : "PUT";
     try {
       const response = await fetch(url, {
@@ -100,7 +103,7 @@ export default function CategoryTable() {
   const handleDelete = async (product_id) => {
     try {
       const response = await fetch(
-        `http://localhost:8008/mng-category/category/${product_id}`,
+        `${URL}/mng-category/category/${product_id}`,
         {
           method: "DELETE",
         }
