@@ -9,14 +9,11 @@ const dbPoolConfig = {
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
+  port: process.env.DB_PORT || 3306,
   waitForConnections: true,
-  connectionLimit: 5,
+  connectionLimit: 1,
   queueLimit: 0,
 };
-
-if (process.env.PORT === "3307") {
-  dbPoolConfig.port = "3307";
-}
 
 const dbPool = mysql.createPool(dbPoolConfig);
 
@@ -29,7 +26,6 @@ const dbPool = mysql.createPool(dbPoolConfig);
 //     // const [rows] = await connection.query("SELECT * FROM product");
 
 //     // console.log("Data from 'product' table:", rows);
-
 
 //     connection.release(); // Release the connection back to the pool
 //   } catch (err) {
